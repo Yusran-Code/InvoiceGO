@@ -4,6 +4,7 @@ import (
 	"dasar-go/auth"
 	"dasar-go/config"
 	"dasar-go/routes"
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -21,6 +22,9 @@ func main() {
 	}).ParseGlob("templates/*.html"))
 
 	if os.Getenv("ENV") != "production" {
+		env := os.Getenv("ENV")
+		fmt.Printf("✅ Connected to PostgreSQL (%s environment)\n", env)
+
 		_ = godotenv.Load()
 	}
 
