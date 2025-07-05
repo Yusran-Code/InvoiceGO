@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Invoice Generator</title>
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body
+    class="bg-[#f4f1ee] min-h-screen flex items-center justify-center px-4 py-10"
+  >
+    <div
+      class="w-full max-w-2xl bg-white shadow-xl rounded-xl p-8 border border-gray-300 grid grid-cols-[2fr_1fr] gap-8"
+    >
+      <!-- LEFT: FORM -->
+      <div>
+        <h1 class="text-2xl font-mono font-bold text-gray-800 mb-6 text-center">
+          Invoice Generator
+        </h1>
+
+        <form
+          hx-post="/generate"
+          hx-target="#invoice"
+          hx-swap="innerHTML"
+          class="space-y-5 text-gray-700 text-sm font-mono"
+        >
+          <div>
+            <label class="block mb-1">No Invoice:</label>
+            <input
+              name="invoice_number"
+              required
+              class="w-full border border-gray-300 rounded-md px-3 py-2 bg-[#fdfcf9] focus:outline-none focus:ring focus:ring-yellow-300"
+            />
+          </div>
+
+          <div>
+            <label class="block mb-1">Periode:</label>
+            <input
+              type="text"
+              name="periode"
+              placeholder="contoh: Juli 2025"
+              class="w-full border border-gray-300 rounded-md px-3 py-2 bg-[#fdfcf9] focus:outline-none focus:ring focus:ring-yellow-300"
+            />
+          </div>
+
+          <div>
+            <label class="block mb-1">Tanggal:</label>
+            <input
+              type="date"
+              name="invoice_date"
+              required
+              class="w-full border border-gray-300 rounded-md px-3 py-2 bg-[#fdfcf9] focus:outline-none focus:ring focus:ring-yellow-300"
+            />
+          </div>
+
+          <div>
+            <label class="block mb-1">Quantity (Kg):</label>
+            <input
+              type="number"
+              name="quantity_kg"
+              step="any"
+              placeholder="Jumlah Angkut"
+              required
+              class="w-full border border-gray-300 rounded-md px-3 py-2 bg-[#fdfcf9] focus:outline-none focus:ring focus:ring-yellow-300"
+            />
+          </div>
+
+          <div>
+            <label class="block mb-1">DPP (Input manual):</label>
+            <input
+              type="number"
+              placeholder="Nilai DPP dari Efaktur"
+              name="dpp"
+              step="any"
+              required
+              class="w-full border border-gray-300 rounded-md px-3 py-2 bg-[#fdfcf9] focus:outline-none focus:ring focus:ring-yellow-300"
+            />
+          </div>
+
+          <div class="space-y-3 pt-2">
+            <button
+              type="submit"
+              class="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded-md transition"
+            >
+              Generate Invoice
+            </button>
+
+            <a
+              href="/setup"
+              class="w-full inline-block text-center bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-2 px-4 rounded-md transition border border-gray-300"
+            >
+              Edit Profil
+            </a>
+          </div>
+        </form>
+      </div>
+
+      <!-- RIGHT: PREVIEW -->
+      <div id="invoice" class="text-center text-gray-500">
+        <p class="italic text-sm">
+          Preview invoice akan muncul di sini setelah generate.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

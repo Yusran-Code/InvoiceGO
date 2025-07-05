@@ -1,0 +1,32 @@
+name: CI Push to Main
+
+on:
+  push:
+    branches: [ci-run] # kita jalankan dari branch ini
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set Git config
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Buat perubahan contoh (opsional)
+        run: echo "CI timestamp: $(date)" >> ci-log.txt
+
+      - name: Commit dan Push ke main
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          git add .
+          git commit -m "Push dari CI ke main" || echo "Nothing to commit"
+          git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/Yusran-Code/goAppInvoice.git
+          git push origin main

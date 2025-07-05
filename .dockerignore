@@ -1,0 +1,20 @@
+# Git
+.git
+.gitignore
+
+# IDE/editor
+.vscode
+*.swp
+
+# Env & secrets
+.env
+*.pem
+
+# Binaries & build artifacts
+invoice-app
+*.exe
+*.out
+*.log
+
+# Test coverage
+coverage.out

@@ -1,0 +1,7 @@
+# Jangan upload .env ke GitHub
+.env
+
+# File Go umum
+*.exe
+*.out
+*.test
