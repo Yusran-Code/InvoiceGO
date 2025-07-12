@@ -44,8 +44,6 @@ func main() {
 	//hadnler LO
 
 	// ✅ Static Handler for /static/
-	fs := http.FileServer(http.Dir("static"))
-	mux.Handle("/static/", http.StripPrefix("/static/", fs))
 
 	log.Println("Jalan di http://localhost:8080")
 	http.ListenAndServe(":8080", mux)

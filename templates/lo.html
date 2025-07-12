@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <title>Generate LO PDF</title>
     <link rel="stylesheet" href="/static/style.css" />
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script>
       function ubahAksi(isDownload) {
@@ -21,13 +22,9 @@
       }
     </script>
   </head>
-  <body
-    class="min-h-screen bg-gray-50 text-gray-800 font-sans flex items-center justify-center px-4"
-  >
-    <div class="w-full max-w-md bg-white p-8 rounded-2xl shadow-xl">
-      <h2 class="text-2xl font-bold mb-6 text-center text-blue-600">
-        📄 Upload Laporan Operasional
-      </h2>
+  <body>
+    <div>
+      <h2>📄 Upload Laporan Operasional</h2>
 
       <!-- FORM -->
       <form
@@ -40,14 +37,8 @@
       >
         <!-- Bulan -->
         <div>
-          <label class="block text-sm font-medium mb-1 text-gray-700"
-            >Bulan / Periode</label
-          >
-          <select
-            name="bulan"
-            required
-            class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
+          <label>Bulan / Periode</label>
+          <select name="bulan" required>
             <option value="">-- Pilih Bulan --</option>
             <option value="Januari 2026">Januari 2026</option>
             <option value="Februari 2026">Februari 2026</option>
@@ -66,55 +57,38 @@
 
         <!-- Nama PT -->
         <div>
-          <label class="block text-sm font-medium mb-1 text-gray-700"
-            >Nama PT</label
-          >
+          <label>Nama PT</label>
           <input
             type="text"
             name="namapt"
             placeholder="Contoh: PT Contoh Sejahtera"
-            class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
           />
         </div>
 
         <!-- File Upload -->
         <div>
-          <label class="block text-sm font-medium mb-1 text-gray-700"
-            >Upload File Excel</label
-          >
-          <input
-            type="file"
-            name="file"
-            accept=".xlsx,.xls"
-            class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            required
-          />
+          <label>Upload File Excel</label>
+          <input type="file" name="file" accept=".xlsx,.xls" required />
         </div>
 
         <!-- Pilihan: Preview atau Download -->
-        <div class="flex items-center justify-between">
-          <label class="text-sm text-gray-700">
-            <input
-              type="checkbox"
-              onchange="ubahAksi(this.checked)"
-              class="mr-2"
-            />
+        <div>
+          <label>
+            <input type="checkbox" onchange="ubahAksi(this.checked)" />
             Mode Download
           </label>
         </div>
 
         <!-- Tombol Submit -->
-        <div class="text-center">
-          <button
-            id="submitBtn"
-            type="submit"
-            class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg shadow-md transition duration-200 w-full"
-          >
-            🔍 Preview PDF
-          </button>
+        <div>
+          <button id="submitBtn" type="submit">🔍 Preview PDF</button>
         </div>
       </form>
     </div>
   </body>
+
+  <div style="text-align: center">
+    <a href="/">Home</a>
+  </div>
 </html>

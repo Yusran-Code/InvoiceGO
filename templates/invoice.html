@@ -1,6 +1,6 @@
 <!-- templates/invoice.html -->
-<div class="bg-white rounded-xl shadow-md p-6 w-full max-w-md space-y-4">
-  <h2 class="text-xl font-semibold text-center text-gray-700">Invoice PDF</h2>
+<div>
+  <h2>Invoice PDF</h2>
 
   <!-- PREVIEW PDF -->
   <form
@@ -16,12 +16,7 @@
     <input type="hidden" name="dpp" value="{{.DPP}}" />
     <input type="hidden" name="periode" value="{{.Periode}}" />
 
-    <button
-      type="submit"
-      class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg"
-    >
-      Preview PDF
-    </button>
+    <button style="background-color: forestgreen; margin: 4px;" type="submit">Preview PDF</button>
   </form>
 
   <!-- DOWNLOAD PDF -->
@@ -37,11 +32,8 @@
     <input type="hidden" name="dpp" value="{{.DPP}}" />
     <input type="hidden" name="periode" value="{{.Periode}}" />
 
-    <button
-      type="submit"
-      class="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg"
-    >
-      Download PDF
-    </button>
+    <button type="submit">Download PDF</button>
   </form>
+
+  </div>
 </div>
