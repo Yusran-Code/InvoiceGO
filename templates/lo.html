@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Generate LO PDF</title>
+    <link rel="stylesheet" href="/static/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      function ubahAksi(isDownload) {
+        const form = document.getElementById("uploadForm");
+        const tombol = document.getElementById("submitBtn");
+        if (isDownload) {
+          form.action = "/downloadLo";
+          form.target = "_self"; // langsung download
+          tombol.innerText = "⬇️ Download PDF";
+        } else {
+          form.action = "/previewLo";
+          form.target = "_blank"; // buka tab baru
+          tombol.innerText = "🔍 Preview PDF";
+        }
+      }
+    </script>
+  </head>
+  <body
+    class="min-h-screen bg-gray-50 text-gray-800 font-sans flex items-center justify-center px-4"
+  >
+    <div class="w-full max-w-md bg-white p-8 rounded-2xl shadow-xl">
+      <h2 class="text-2xl font-bold mb-6 text-center text-blue-600">
+        📄 Upload Laporan Operasional
+      </h2>
+
+      <!-- FORM -->
+      <form
+        id="uploadForm"
+        method="post"
+        action="/previewLo"
+        target="_blank"
+        enctype="multipart/form-data"
+        class="space-y-5"
+      >
+        <!-- Bulan -->
+        <div>
+          <label class="block text-sm font-medium mb-1 text-gray-700"
+            >Bulan / Periode</label
+          >
+          <select
+            name="bulan"
+            required
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="">-- Pilih Bulan --</option>
+            <option value="Januari 2026">Januari 2026</option>
+            <option value="Februari 2026">Februari 2026</option>
+            <option value="Maret 2026">Maret 2026</option>
+            <option value="April 2026">April 2026</option>
+            <option value="Mei 2026">Mei 2026</option>
+            <option value="Juni 2025">Juni 2025</option>
+            <option value="Juli 2025">Juli 2025</option>
+            <option value="Agustus 2025">Agustus 2025</option>
+            <option value="September 2025">September 2025</option>
+            <option value="Oktober 2025">Oktober 2025</option>
+            <option value="November 2025">November 2025</option>
+            <option value="Desember 2025">Desember 2025</option>
+          </select>
+        </div>
+
+        <!-- Nama PT -->
+        <div>
+          <label class="block text-sm font-medium mb-1 text-gray-700"
+            >Nama PT</label
+          >
+          <input
+            type="text"
+            name="namapt"
+            placeholder="Contoh: PT Contoh Sejahtera"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          />
+        </div>
+
+        <!-- File Upload -->
+        <div>
+          <label class="block text-sm font-medium mb-1 text-gray-700"
+            >Upload File Excel</label
+          >
+          <input
+            type="file"
+            name="file"
+            accept=".xlsx,.xls"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          />
+        </div>
+
+        <!-- Pilihan: Preview atau Download -->
+        <div class="flex items-center justify-between">
+          <label class="text-sm text-gray-700">
+            <input
+              type="checkbox"
+              onchange="ubahAksi(this.checked)"
+              class="mr-2"
+            />
+            Mode Download
+          </label>
+        </div>
+
+        <!-- Tombol Submit -->
+        <div class="text-center">
+          <button
+            id="submitBtn"
+            type="submit"
+            class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg shadow-md transition duration-200 w-full"
+          >
+            🔍 Preview PDF
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

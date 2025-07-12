@@ -4,6 +4,7 @@ import (
 	"dasar-go/auth"
 	"dasar-go/config"
 	"dasar-go/routes"
+
 	"fmt"
 	"html/template"
 	"log"
@@ -39,6 +40,8 @@ func main() {
 	// ✅ Routing Auth dan App
 	auth.RegisterAuthRoutes(mux)
 	routes.RegisterAppRoutes(mux, tmpl, config.DB)
+
+	//hadnler LO
 
 	// ✅ Static Handler for /static/
 	fs := http.FileServer(http.Dir("static"))
