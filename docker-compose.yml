@@ -6,7 +6,7 @@ services:
     env_file:
       - .env
     environment:
-      - DATABASE_URL=postgres://postgres:LuckyCode@db:5432/inv?sslmode=disable
+      - DATABASE_URL=postgresql://postgres:CHnQCPujAyrMdvBvNBufqCEHTXIWfvwC@switchback.proxy.rlwy.net:34792/railway?sslmode=require
     depends_on:
       - db
 

@@ -9,7 +9,7 @@ import (
 	_ "github.com/lib/pq"
 )
 
-var DB *sql.DB // ⬅ Ini bisa diakses dari file lain: config.DB
+var DB *sql.DB // Ini untuk dipakai dari file lain: config.DB
 
 func Init() {
 	var err error
@@ -17,16 +17,18 @@ func Init() {
 
 	maxRetries := 10
 	for i := 0; i < maxRetries; i++ {
-		DB, err = sql.Open("postgres", connStr)
+		db, err := sql.Open("postgres", connStr)
 		if err != nil {
 			log.Println("Gagal buka koneksi DB:", err)
 		} else {
-			err = DB.Ping()
+			err = db.Ping()
 			if err == nil {
 				log.Println("Koneksi DB berhasil")
+				DB = db // <-- SIMPAN ke global var
 				return
 			}
 			log.Println("Ping DB gagal:", err)
+			db.Close()
 		}
 
 		log.Printf("Coba konek DB lagi (%d/%d)...", i+1, maxRetries)
