@@ -1,4 +1,4 @@
-module dasar-go
+module invoice-go
 
 go 1.23.3
 

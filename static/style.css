@@ -8,8 +8,8 @@
 /* === GLOBAL === */
 body {
   font-family: "Segoe UI", sans-serif;
-  background-color: #f9fafb;
-  color: #1f2937;
+  background-color: #0e0f0f;
+  color: #ebf0f5;
   line-height: 1.6;
   padding: 1rem;
 }
@@ -20,16 +20,17 @@ body {
   width: 100%;
   max-width: 420px; /* <= Lebih ramping dari 600px */
   margin: auto;
-  background: white;
+  background: rgb(7, 7, 7);
   border-radius: 12px;
   padding: 1.5rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  color: #ebf0f5;
 }
 
 /* === HEADING === */
 h1,
 h2 {
-  color: #4f46e5;
+  color: #bc07cc;
   margin-bottom: 1rem;
   text-align: center;
   font-size: 1.75rem;
@@ -51,9 +52,9 @@ input[type="date"],
 input[type="number"],
 select,
 textarea {
-  width: 30%;
+  width: 40%;
   padding: 0.6rem 0.9rem;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #de7ce7;
   border-radius: 8px;
   font-size: 1rem;
   margin-bottom: 1.2rem;
@@ -73,7 +74,7 @@ textarea:focus {
 /* === BUTTON === */
 button,
 .btn {
-  background-color: #4f46e5;
+  background-color: #d00ae2;
   color: white;
   border: none;
   padding: 0.6rem 1.25rem;
@@ -88,25 +89,25 @@ button,
 
 button:hover,
 .btn:hover {
-  background-color: #4338ca;
+  background-color: #9e0c9e;
 }
 
 .btn-secondary {
-  background-color: #22c55e;
+  background-color: #72095b;
 }
 
 .btn-secondary:hover {
-  background-color: #16a34a;
+  background-color: #9b3a8e;
 }
 
 /* === LINK === */
 a {
-  color: #4f46e5;
+  color: #c016a9;
   text-decoration: none;
 }
 
 a:hover {
-  text-decoration: underline;
+  background-color: #c016a9;
 }
 
 /* === CUSTOM CLASS TAMBAHAN === */

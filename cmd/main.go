@@ -1,9 +1,9 @@
 package main
 
 import (
-	"dasar-go/auth"
-	"dasar-go/config"
-	"dasar-go/routes"
+	"invoice-go/auth"
+	"invoice-go/config"
+	"invoice-go/routes"
 
 	"fmt"
 	"html/template"
@@ -22,6 +22,7 @@ func main() {
 	} else {
 		log.Println("✅ .env berhasil dimuat")
 	}
+	auth.InitSession()
 
 	// 2️⃣ Debug ENV
 	fmt.Println("DATABASE_URL:", os.Getenv("DATABASE_URL"))
