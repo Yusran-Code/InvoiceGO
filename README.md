@@ -10,7 +10,7 @@
 - ✅ Preview invoice in browser
 - ✅ Download invoice as PDF
 - ✅ Input validation: numbers only, required fields
-- ✅ extract raw excel data LO
+- ✅ Extract raw excel data LO
 - ✅ Generate LO with Add vendor name heading & total cell
 - ✅ JSON error response from API
 - ✅ Clean & scalable folder structure
