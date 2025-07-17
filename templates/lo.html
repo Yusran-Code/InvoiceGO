@@ -33,10 +33,10 @@
         action="/previewLo"
         target="_blank"
         enctype="multipart/form-data"
-        style="text-align: center"
+        style="text-align: center; margin: 10px"
       >
         <!-- Bulan -->
-        <div>
+        <div class="form-group">
           <label>Bulan / Periode</label>
           <select name="bulan" required>
             <option value="">-- Pilih Bulan --</option>
@@ -56,7 +56,7 @@
         </div>
 
         <!-- Nama PT -->
-        <div>
+        <div class="form-group">
           <label>Nama PT</label>
           <input
             type="text"
@@ -67,7 +67,7 @@
         </div>
 
         <!-- File Upload -->
-        <div>
+        <div class="form-group">
           <label>Upload File Excel</label>
           <input type="file" name="file" accept=".xlsx,.xls" required />
         </div>
@@ -88,7 +88,7 @@
     </div>
   </body>
 
-  <div style="text-align: center">
+  <div style="text-align: center; padding: 40px">
     <a href="/">Home</a>
   </div>
 </html>

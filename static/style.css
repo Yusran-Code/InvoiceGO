@@ -8,8 +8,8 @@
 /* === GLOBAL === */
 body {
   font-family: "Segoe UI", sans-serif;
-  background-color: #0e0f0f;
-  color: #ebf0f5;
+  background-color: #f0dae1;
+  color: #060707;
   line-height: 1.6;
   padding: 1rem;
 }
@@ -18,7 +18,7 @@ body {
 
 .container {
   width: 100%;
-  max-width: 420px; /* <= Lebih ramping dari 600px */
+  max-width: 420px;
   margin: auto;
   background: rgb(7, 7, 7);
   border-radius: 12px;
@@ -26,11 +26,28 @@ body {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   color: #ebf0f5;
 }
+.form-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  margin-bottom: 0;
+  width: 30%;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 60%;
+}
 
 /* === HEADING === */
 h1,
 h2 {
-  color: #bc07cc;
+  color: #e40808;
   margin-bottom: 1rem;
   text-align: center;
   font-size: 1.75rem;
@@ -52,9 +69,9 @@ input[type="date"],
 input[type="number"],
 select,
 textarea {
-  width: 40%;
+  width: 60%;
   padding: 0.6rem 0.9rem;
-  border: 1px solid #de7ce7;
+  border: 1px solid #e7323b;
   border-radius: 8px;
   font-size: 1rem;
   margin-bottom: 1.2rem;
@@ -64,17 +81,15 @@ textarea {
 input:focus,
 select:focus,
 textarea:focus {
-  border-color: #4f46e5;
+  border-color: #f81010;
   outline: none;
   box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
 }
 
-/* === SETUP === */
-
 /* === BUTTON === */
 button,
 .btn {
-  background-color: #d00ae2;
+  background-color: #e40808;
   color: white;
   border: none;
   padding: 0.6rem 1.25rem;
@@ -89,25 +104,25 @@ button,
 
 button:hover,
 .btn:hover {
-  background-color: #9e0c9e;
+  background-color: #831313;
 }
 
 .btn-secondary {
-  background-color: #72095b;
+  background-color: #e40808;
 }
 
 .btn-secondary:hover {
-  background-color: #9b3a8e;
+  background-color: #831313;
 }
 
 /* === LINK === */
 a {
-  color: #c016a9;
+  color: #0814bb;
   text-decoration: none;
 }
 
 a:hover {
-  background-color: #c016a9;
+  text-decoration: underline;
 }
 
 /* === CUSTOM CLASS TAMBAHAN === */
@@ -133,17 +148,17 @@ a:hover {
   input[type="number"],
   select,
   textarea {
-    width: 100%; /* ✅ Ganti jadi penuh di layar kecil */
+    width: 100%;
   }
 
   button,
   .btn {
-    width: 100%; /* Tombol juga full biar nyaman diklik */
+    width: 100%;
     margin-top: 0.5rem;
   }
 
   .container {
-    padding: 1rem; /* Lebih ramping */
+    padding: 1rem;
     border-radius: 8px;
   }
 

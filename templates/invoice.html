@@ -9,11 +9,19 @@
       target="_blank"
       style="display: inline-block; margin-right: 8px"
     >
-      <input type="hidden" name="invoice_number" value="{{.InvoiceNumber}}" />
-      <input type="hidden" name="invoice_date" value="{{.InvoiceDate}}" />
-      <input type="hidden" name="quantity_kg" value="{{.QuantityKG}}" />
-      <input type="hidden" name="dpp" value="{{.DPP}}" />
-      <input type="hidden" name="periode" value="{{.Periode}}" />
+      <div class="form-group">
+        <input type="hidden" name="invoice_number" value="{{.InvoiceNumber}}" />
+        <input type="hidden" name="invoice_date" value="{{.InvoiceDate}}" />
+        <input type="hidden" name="quantity_kg" value="{{.QuantityKG}}" />
+        <input
+          type="hidden"
+          name="dpp"
+          value="{{.DPP}}"
+          pattern="^\d+(\.\d{1,2})?$"
+          title="Hanya angka. Gunakan titik (.) untuk desimal, tanpa koma atau simbol"
+        />
+        <input type="hidden" name="periode" value="{{.Periode}}" />
+      </div>
 
       <button
         style="
@@ -36,11 +44,13 @@
       target="_blank"
       style="display: inline-block"
     >
-      <input type="hidden" name="invoice_number" value="{{.InvoiceNumber}}" />
-      <input type="hidden" name="invoice_date" value="{{.InvoiceDate}}" />
-      <input type="hidden" name="quantity_kg" value="{{.QuantityKG}}" />
-      <input type="hidden" name="dpp" value="{{.DPP}}" />
-      <input type="hidden" name="periode" value="{{.Periode}}" />
+      <div class="form-group">
+        <input type="hidden" name="invoice_number" value="{{.InvoiceNumber}}" />
+        <input type="hidden" name="invoice_date" value="{{.InvoiceDate}}" />
+        <input type="hidden" name="quantity_kg" value="{{.QuantityKG}}" />
+        <input type="hidden" name="dpp" value="{{.DPP}}" />
+        <input type="hidden" name="periode" value="{{.Periode}}" />
+      </div>
 
       <button
         style="
