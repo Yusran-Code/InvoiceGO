@@ -1,6 +1,6 @@
 # 🧾 InvoiceGO - PDF Invoice Generator in Go
 
-**InvoiceGO** is a simple web application built with Go (Golang) that generates and downloads PDF invoices. This project is perfect for showcasing backend skills, following clean architecture and a modular structure.
+**InvoiceGO** A supporting system for PT PERTAMINA’s main application, providing an efficient solution for generating invoices. Built with Go (Golang) that generates and downloads PDF invoices and LO Laporan operational(Operations Report). This project is perfect for showcasing backend skills, following clean architecture and a modular structure.
 
 ---
 
