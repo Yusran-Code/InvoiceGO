@@ -10,6 +10,8 @@
 - ✅ Preview invoice in browser
 - ✅ Download invoice as PDF
 - ✅ Input validation: numbers only, required fields
+- ✅ extract raw excel data LO
+- ✅ Generate LO with Add vendor name heading & total cell
 - ✅ JSON error response from API
 - ✅ Clean & scalable folder structure
 - ✅ Ready to extend with database integration
@@ -27,6 +29,13 @@ cd InvoiceGO
 go mod tidy
 go run cmd/main.go
 
+## 🧑‍💻 Usage
+
+1. Visit `http://localhost:8080/setup`
+2. Fill in the invoice form
+3. Click "Preview" to see the invoice
+4. Click "Download" to get PDF
+
 ## 📡 API Endpoints
 
 | Method | Endpoint         | Description                            | Auth Required |
@@ -42,12 +51,7 @@ go run cmd/main.go
 | GET    | `/static/...`    | Serve static files (CSS, JS, etc.)     | ❌             |
 
 
-## 🧑‍💻 Usage
 
-1. Visit `http://localhost:8080/setup`
-2. Fill in the invoice form
-3. Click "Preview" to see the invoice
-4. Click "Download" to get PDF
 
 
 
