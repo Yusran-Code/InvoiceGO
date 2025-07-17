@@ -1,6 +1,6 @@
 # 🧾 InvoiceGO - PDF Invoice Generator in Go
 
-**InvoiceGO** is a supporting system for PT PERTAMINA’s main application, designed to efficiently generate PDF invoices. Built using Go (Golang), it enables both invoice generation and download. The system also extracts unprocessed Excel data from the main web application to produce Laporan Operasional (Operational Reports), enriched with additional fields such as vendor name headings and total price/tax breakdowns.
+**InvoiceGO** is an internal supporting tool for PT PERTAMINA’s main application, designed to efficiently generate PDF invoices. Built with Go (Golang), it supports both invoice generation and download. The system also extracts raw Excel data from the main web application to generate Laporan Operasional (Operational Reports), enhanced with additional fields such as vendor name headers and total price/tax summaries.
 
 ---
 
