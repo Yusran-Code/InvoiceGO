@@ -6,6 +6,7 @@
 
 ## 🚀 Features
 
+- ✅ Google Outh Login
 - ✅ Generate invoice PDF from form input
 - ✅ Preview invoice in browser
 - ✅ Download invoice as PDF
