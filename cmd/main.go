@@ -51,9 +51,10 @@ func main() {
 
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "8080" // fallback saat lokal
+		log.Fatal("❌ PORT environment variable tidak tersedia")
 	}
-	log.Printf("✅ Server berjalan di http://localhost:%s\n", port)
+
+	log.Printf("✅ Server berjalan di http://0.0.0.0:%s\n", port)
 	http.ListenAndServe("0.0.0.0:"+port, mux)
 
 }
