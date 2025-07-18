@@ -2,9 +2,9 @@ package auth
 
 import (
 	"context"
+	"encoding/json"
 	"invoice-go/config"
 	"invoice-go/repository"
-	"encoding/json"
 	"log"
 	"net/http"
 	"os"
@@ -103,7 +103,7 @@ func handleCallback(w http.ResponseWriter, r *http.Request) {
 	}
 
 	email := userInfo["email"].(string)
-	log.Println("✅ EMAIL DARI GOOGLE:", email)
+	log.Println("✅ EMAIL DITEMUKAN")
 
 	session, err := Store.Get(r, "session")
 	if err != nil {
@@ -119,7 +119,7 @@ func handleCallback(w http.ResponseWriter, r *http.Request) {
 	}
 
 	profile, err := repository.GetUserEmail(config.DB, email)
-	log.Println("PROFIL:", profile)
+	log.Println("PROFIL: DITEMUKAN")
 	log.Println("ERROR LOAD PROFIL:", err)
 
 	if err != nil || profile.NamaPT == "" {

@@ -1,15 +1,15 @@
 package handlers
 
 import (
-	"invoice-go/service"
 	"html/template"
+	"invoice-go/service"
 	"net/http"
 )
 
 func HandlersInvoice(tmpl *template.Template) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == http.MethodPost {
-			data, err := service.ServiceInvoice(r) // 🟢 PAKAI NAMA YANG KAMU MAU
+			data, err := service.ServiceInvoice(r)
 			if err != nil {
 				http.Error(w, "Gagal memproses data", http.StatusBadRequest)
 				return
