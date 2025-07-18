@@ -10,7 +10,7 @@ RUN go mod download
 COPY . .
 
 ENV CGO_ENABLED=0
-RUN go build -tags netgo -ldflags="-w -s" -o invoice-app .
+RUN go build -tags netgo -ldflags="-w -s" -o invoice-app ./cmd
 
 # Tahap kedua: runtime minimal
 FROM alpine:latest
