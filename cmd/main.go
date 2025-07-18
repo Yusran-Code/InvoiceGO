@@ -8,35 +8,43 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/dustin/go-humanize"
 	"github.com/joho/godotenv"
 )
 
 func main() {
-	// Load .env terlebih dahulu
+	// Coba load .env, tapi tidak panik jika gagal (bisa karena Railway)
 	if err := godotenv.Load(".env"); err != nil {
-		log.Println("Tidak bisa load .env:", err)
+		log.Println("🔔 Tidak bisa load .env (mungkin karena running di Railway):", err)
 	} else {
 		log.Println("✅ .env berhasil dimuat")
 	}
+
+	// Pastikan SESSION_KEY tetap ada meskipun dari environment Railway
+	if os.Getenv("SESSION_KEY") == "" {
+		log.Fatal("❌ SESSION_KEY belum di-set! Set di .env atau di Railway environment variables.")
+	}
+
+	// Inisialisasi session
 	auth.InitSession()
 
-	//  Template fungsi format
+	// Tambahkan fungsi format Rupiah ke template
 	tmpl := template.Must(template.New("").Funcs(template.FuncMap{
 		"formatRupiah": func(n float64) string {
 			return humanize.Comma(int64(n))
 		},
 	}).ParseGlob("templates/*.html"))
 
-	//  Inisialisasi koneksi DB
+	// Koneksi ke DB
 	config.Init()
 	defer config.DB.Close()
 
-	//  Inisialisasi OAuth (setelah env ready)
+	// Inisialisasi OAuth setelah env
 	auth.InitOAuthConfig()
 
-	//  Setup mux dan routing
+	// Routing
 	mux := http.NewServeMux()
 	auth.RegisterAuthRoutes(mux)
 	routes.RegisterAppRoutes(mux, tmpl, config.DB)
