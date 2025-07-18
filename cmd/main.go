@@ -49,7 +49,11 @@ func main() {
 	auth.RegisterAuthRoutes(mux)
 	routes.RegisterAppRoutes(mux, tmpl, config.DB)
 
-	log.Println("✅ Server berjalan di http://localhost:8080")
-	http.ListenAndServe("0.0.0.0:8080", mux)
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080" // fallback saat lokal
+	}
+	log.Printf("✅ Server berjalan di http://localhost:%s\n", port)
+	http.ListenAndServe("0.0.0.0:"+port, mux)
 
 }
