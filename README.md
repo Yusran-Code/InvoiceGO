@@ -26,7 +26,7 @@
 ## ⚙️ Installation
 
 ```bash
-git clone https://github.com/yourusername/InvoiceGO.git
+git clone https://github.com/92lucky/InvoiceGO.git
 cd InvoiceGO
 go mod tidy
 go run cmd/main.go
