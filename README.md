@@ -54,6 +54,9 @@ go test ./test
 | GET    | `/static/...`    | Serve static files (CSS, JS, etc.)     | ❌             |
 
 
+## monolith app go + htmx
+
+
 
 
 
