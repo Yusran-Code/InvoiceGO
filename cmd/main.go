@@ -15,7 +15,7 @@ import (
 
 func main() {
 	// Load .env terlebih dahulu
-	if err := godotenv.Load(); err != nil {
+	if err := godotenv.Load(".env"); err != nil {
 		log.Println("Tidak bisa load .env:", err)
 	} else {
 		log.Println("✅ .env berhasil dimuat")
