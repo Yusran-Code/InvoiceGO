@@ -55,7 +55,7 @@ func main() {
 	}
 	log.Printf("✅ Server berjalan di http://localhost:%s\n", port)
 
-	err := http.ListenAndServe("0.0.0.0:"+port, mux)
+	err := http.ListenAndServe(":"+port, mux)
 	if err != nil {
 		log.Fatalf("❌ Gagal menjalankan server: %v", err)
 	}
