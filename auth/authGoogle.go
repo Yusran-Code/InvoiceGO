@@ -119,7 +119,7 @@ func handleCallback(w http.ResponseWriter, r *http.Request) {
 
 	// ✅ Redirect sesuai kondisi
 	if exists {
-		http.Redirect(w, r, "/invoice.html", http.StatusSeeOther)
+		http.Redirect(w, r, "/index.html", http.StatusSeeOther)
 	} else {
 		http.Redirect(w, r, "/setup", http.StatusSeeOther)
 	}
