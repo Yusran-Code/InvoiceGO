@@ -1,11 +1,11 @@
 package handlers
 
 import (
+	"html/template"
 	"invoice-go/auth"
 	"invoice-go/config"
 	"invoice-go/model"
 	"invoice-go/service"
-	"html/template"
 	"net/http"
 )
 
@@ -16,8 +16,14 @@ func HandleSetup(tmpl *template.Template) http.HandlerFunc {
 
 		switch r.Method {
 		case http.MethodGet:
-			profile, _ := service.LoadProfileByEmail(config.DB, email)
-			tmpl.ExecuteTemplate(w, "setup.html", profile)
+			profile, err := service.LoadProfileByEmail(config.DB, email)
+			if err != nil {
+				// Jika tidak ditemukan, isi struct kosong (Email tetap diisi agar tidak null di form)
+				profile = &model.AppProfile{Email: email}
+			}
+			if err := tmpl.ExecuteTemplate(w, "setup.html", profile); err != nil {
+				http.Error(w, "Template error: "+err.Error(), http.StatusInternalServerError)
+			}
 
 		case http.MethodPost:
 			r.ParseForm()
@@ -32,7 +38,7 @@ func HandleSetup(tmpl *template.Template) http.HandlerFunc {
 			}
 
 			if err := service.UpdateProfile(config.DB, profile); err != nil {
-				http.Error(w, "gagal simpan profil", http.StatusInternalServerError)
+				http.Error(w, "Gagal simpan profil: "+err.Error(), http.StatusInternalServerError)
 				return
 			}
 

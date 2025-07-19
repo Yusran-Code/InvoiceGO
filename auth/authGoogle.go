@@ -2,7 +2,7 @@ package auth
 
 import (
 	"encoding/json"
-	"log"
+	"invoice-go/config"
 	"net/http"
 	"os"
 
@@ -95,6 +95,7 @@ func handleCallback(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// ✅ Simpan ke session
 	session, err := Store.Get(r, "session")
 	if err != nil {
 		http.Error(w, "Gagal ambil session", http.StatusInternalServerError)
@@ -103,22 +104,25 @@ func handleCallback(w http.ResponseWriter, r *http.Request) {
 
 	session.Values["authenticated"] = true
 	session.Values["email"] = email
-
 	if err := session.Save(r, w); err != nil {
 		http.Error(w, "Gagal simpan session", http.StatusInternalServerError)
 		return
 	}
 
-	returnToRaw := session.Values["returnTo"]
-	var returnTo string
-	if str, ok := returnToRaw.(string); ok && str != "" {
-		returnTo = str
-	} else {
-		returnTo = "/index"
+	// ✅ Cek apakah user sudah pernah isi profil
+	var exists bool
+	err = config.DB.QueryRow(`SELECT EXISTS (SELECT 1 FROM user_profile WHERE email = $1)`, email).Scan(&exists)
+	if err != nil {
+		http.Error(w, "Gagal cek profil user: "+err.Error(), http.StatusInternalServerError)
+		return
 	}
 
-	log.Println("➡️ Redirect ke", returnTo)
-	http.Redirect(w, r, returnTo, http.StatusSeeOther)
+	// ✅ Redirect sesuai kondisi
+	if exists {
+		http.Redirect(w, r, "/invoice.html", http.StatusSeeOther)
+	} else {
+		http.Redirect(w, r, "/setup", http.StatusSeeOther)
+	}
 }
 
 func handleLogout(w http.ResponseWriter, r *http.Request) {
