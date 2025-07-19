@@ -8,21 +8,20 @@
 /* === GLOBAL === */
 body {
   font-family: "Segoe UI", sans-serif;
-  background-color: #f0dae1;
-  color: #060707;
+
   line-height: 1.6;
   padding: 1rem;
 }
 
 /* === CONTAINER === */
 .container {
-  max-width: 420px;
+  max-width: 5000px;
   margin: auto;
-  background: #f5f2f2;
+
   border-radius: 12px;
   padding: 1.25rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  color: #ebf0f5;
+  color: black;
 }
 
 /* === HEADINGS === */
@@ -71,7 +70,7 @@ textarea:focus {
 button,
 .btn {
   background-color: #e40808;
-  color: white;
+  color: black;
   border: none;
   padding: 0.6rem 1rem;
   font-size: 1rem;
