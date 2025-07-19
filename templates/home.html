@@ -4,32 +4,102 @@
     <meta charset="UTF-8" />
     <title>Welcome</title>
     <link rel="stylesheet" href="/static/style.css" />
+    <style>
+      /* Reset & Global */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: #e6d9d9;
+        color: #060707;
+        line-height: 1.6;
+        padding: 1rem;
+      }
+
+      h1 {
+        margin-bottom: 1rem;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .instructions {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin: 2rem 0;
+      }
+
+      .instruction-box {
+        background-color: #5f9ff3;
+        border-radius: 10px;
+        padding: 1rem;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .actions {
+        margin-top: 2rem;
+      }
+
+      .btn {
+        display: inline-block;
+
+        padding: 0.7rem 1.2rem;
+        margin: 0.2rem;
+        border-radius: 5px;
+        text-decoration: none;
+      }
+
+      /* Responsive Mobile View */
+      @media (max-width: 320px) {
+        .instructions {
+          flex-direction: row;
+          flex-wrap: wrap;
+          overflow-x: auto;
+          justify-content: center;
+          padding: 20px;
+        }
+
+        .instruction-box {
+          min-width: 250px;
+          flex: 0 0 auto;
+        }
+      }
+    </style>
   </head>
   <body>
+    <div class="container">
+      <h1>Selamat Datang</h1>
 
- 
-    
-    <div style="text-align: center; margin: 10%">
-      <div style="text-align: center; margin: 10%">
-        <h1>Selamat Datang</h1>
-      
-        <div class="mb-4">
+      <div class="instructions">
+        <div class="instruction-box">
           <p>
             1. Unduh Laporan Penerimaan dari Web Simelon Pertamina dalam bentuk
             Excel
           </p>
+        </div>
+        <div class="instruction-box">
           <p>2. Ekstrak file tanpa login</p>
+        </div>
+        <div class="instruction-box">
           <p>
-            3. Silahkan login dengan Google/Gmail untuk buat Invoice, isi form jika
-            belum
+            3. Silakan login dengan Google/Gmail untuk buat Invoice, isi form
+            jika belum
           </p>
         </div>
-      
-        <div class="mt-4">
-          <a class="btn" href="/login">Buat Invoice</a>
-          <a class="btn" href="/lo">Ekstrak LO</a>
-        </div>
       </div>
-      
+
+      <div class="actions">
+        <a class="btn" href="/login">Buat Invoice</a>
+        <a class="btn" href="/lo">Ekstrak LO</a>
+      </div>
+    </div>
   </body>
 </html>

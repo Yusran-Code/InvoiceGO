@@ -14,68 +14,49 @@ body {
   padding: 1rem;
 }
 
-/* === CONTAINER UTAMA === */
-
+/* === CONTAINER === */
 .container {
-  width: 100%;
   max-width: 420px;
   margin: auto;
-  background: rgb(7, 7, 7);
+  background: #f5f2f2;
   border-radius: 12px;
-  padding: 1.5rem;
+  padding: 1.25rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   color: #ebf0f5;
 }
-.form-group {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-}
 
-.form-group label {
-  margin-bottom: 0;
-  width: 30%;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-  width: 60%;
-}
-
-/* === HEADING === */
+/* === HEADINGS === */
 h1,
 h2 {
   color: #e40808;
   margin-bottom: 1rem;
   text-align: center;
-  font-size: 1.75rem;
+  font-size: 1.6rem;
 }
 
-/* === FORM FIELD === */
-label {
-  display: block;
-  margin-bottom: 0.5rem;
+/* === FORM === */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.form-group label {
   font-weight: 600;
   font-size: 0.95rem;
+  margin-bottom: 0.4rem;
 }
 
-input[type="text"],
-input[type="file"],
-input[type="email"],
-input[type="password"],
-input[type="date"],
-input[type="number"],
+input,
 select,
 textarea {
-  width: 60%;
+  width: 100%;
   padding: 0.6rem 0.9rem;
   border: 1px solid #e7323b;
   border-radius: 8px;
   font-size: 1rem;
-  margin-bottom: 1.2rem;
   transition: border 0.3s, box-shadow 0.3s;
+  margin-bottom: 1rem;
 }
 
 input:focus,
@@ -92,26 +73,17 @@ button,
   background-color: #e40808;
   color: white;
   border: none;
-  padding: 0.6rem 1.25rem;
+  padding: 0.6rem 1rem;
   font-size: 1rem;
   border-radius: 8px;
   cursor: pointer;
+  width: 100%;
+  margin-top: 0.5rem;
   transition: background-color 0.3s;
-  display: inline-block;
-  text-align: center;
-  text-decoration: none;
 }
 
 button:hover,
 .btn:hover {
-  background-color: #831313;
-}
-
-.btn-secondary {
-  background-color: #e40808;
-}
-
-.btn-secondary:hover {
   background-color: #831313;
 }
 
@@ -120,50 +92,19 @@ a {
   color: #0814bb;
   text-decoration: none;
 }
-
 a:hover {
   text-decoration: underline;
 }
 
-/* === CUSTOM CLASS TAMBAHAN === */
+/* === UTILITIES === */
 .text-center {
   text-align: center;
 }
-
 .mt-4 {
   margin-top: 1rem;
 }
-
 .mb-4 {
   margin-bottom: 1rem;
 }
 
-/* === RESPONSIVE === */
-@media (max-width: 768px) {
-  input[type="text"],
-  input[type="file"],
-  input[type="email"],
-  input[type="password"],
-  input[type="date"],
-  input[type="number"],
-  select,
-  textarea {
-    width: 100%;
-  }
-
-  button,
-  .btn {
-    width: 100%;
-    margin-top: 0.5rem;
-  }
-
-  .container {
-    padding: 1rem;
-    border-radius: 8px;
-  }
-
-  h1,
-  h2 {
-    font-size: 1.5rem;
-  }
-}
+/* === RESPONSIVE === (sudah mobile-friendly, tidak perlu ubah lagi) */
