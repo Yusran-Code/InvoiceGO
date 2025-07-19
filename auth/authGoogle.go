@@ -110,19 +110,16 @@ func handleCallback(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// ✅ Cek apakah user sudah pernah isi profil
-	var exists bool
-	err = config.DB.QueryRow(`SELECT EXISTS (SELECT 1 FROM user_profile WHERE email = $1)`, email).Scan(&exists)
-	if err != nil {
-		http.Error(w, "Gagal cek profil user: "+err.Error(), http.StatusInternalServerError)
+	// ✅ Cek apakah user sudah isi profil lengkap
+	var namaPT string
+	err = config.DB.QueryRow(`SELECT nama_pt FROM user_profile WHERE email = $1`, email).Scan(&namaPT)
+	if err != nil || namaPT == "" {
+		http.Redirect(w, r, "/setup", http.StatusSeeOther)
 		return
 	}
 
-	// ✅ Redirect sesuai kondisi
-	if exists {
-		http.Redirect(w, r, "/index", http.StatusSeeOther)
-	} else {
-		http.Redirect(w, r, "/setup", http.StatusSeeOther)
-	}
+	http.Redirect(w, r, "/index", http.StatusSeeOther)
+
 }
 
 func handleLogout(w http.ResponseWriter, r *http.Request) {
