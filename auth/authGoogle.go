@@ -1,10 +1,7 @@
 package auth
 
 import (
-	"context"
 	"encoding/json"
-	"invoice-go/config"
-	"invoice-go/repository"
 	"log"
 	"net/http"
 	"os"
@@ -30,7 +27,6 @@ func InitSession() {
 	}
 }
 
-// Konfigurasi OAuth Google
 var googleOauthConfig *oauth2.Config
 
 func InitOAuthConfig() {
@@ -44,95 +40,86 @@ func InitOAuthConfig() {
 		},
 		Endpoint: google.Endpoint,
 	}
-
 }
 
-// REGISTER AUTH ROUTES
-// =============================
 func RegisterAuthRoutes(mux *http.ServeMux) {
 	mux.HandleFunc("/login", handleLogin)
 	mux.HandleFunc("/callback", handleCallback)
 	mux.HandleFunc("/logout", handleLogout)
 }
 
-// LOGIN
-// =============================
 func handleLogin(w http.ResponseWriter, r *http.Request) {
+	returnTo := r.URL.Query().Get("returnTo")
+	if returnTo == "" {
+		returnTo = "/index"
+	}
+
+	session, _ := Store.Get(r, "session")
+	session.Values["returnTo"] = returnTo
+	session.Save(r, w)
+
 	url := googleOauthConfig.AuthCodeURL("state-random")
 	http.Redirect(w, r, url, http.StatusTemporaryRedirect)
 }
 
-// CALLBACK DARI GOOGLE
-// =============================
 func handleCallback(w http.ResponseWriter, r *http.Request) {
-	log.Println("🚨 MASUK CALLBACK")
-
 	code := r.URL.Query().Get("code")
-	state := r.URL.Query().Get("state")
-	log.Println("STATE:", state)
-
-	if state != "state-random" {
-
-		http.Error(w, "State tidak cocok", http.StatusBadRequest)
+	if code == "" {
+		http.Error(w, "Kode tidak ditemukan di callback", http.StatusBadRequest)
 		return
 	}
 
-	// Tukar code jadi token
-	token, err := googleOauthConfig.Exchange(context.Background(), code)
+	token, err := googleOauthConfig.Exchange(r.Context(), code)
 	if err != nil {
-
-		http.Error(w, "Gagal tukar code", http.StatusInternalServerError)
+		http.Error(w, "Gagal menukar kode dengan token: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	// Ambil data user dari Google
-	client := googleOauthConfig.Client(context.Background(), token)
+	client := googleOauthConfig.Client(r.Context(), token)
 	resp, err := client.Get("https://www.googleapis.com/oauth2/v2/userinfo")
 	if err != nil {
-
-		http.Error(w, "Gagal ambil data user", http.StatusInternalServerError)
+		http.Error(w, "Gagal mendapatkan user info dari Google: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
 	defer resp.Body.Close()
 
 	var userInfo map[string]interface{}
 	if err := json.NewDecoder(resp.Body).Decode(&userInfo); err != nil {
-
-		http.Error(w, "Gagal decode userInfo", http.StatusInternalServerError)
+		http.Error(w, "Gagal decode user info", http.StatusInternalServerError)
 		return
 	}
 
-	email := userInfo["email"].(string)
-	log.Println("✅ EMAIL DITEMUKAN")
+	email, ok := userInfo["email"].(string)
+	if !ok || email == "" {
+		http.Error(w, "Email tidak tersedia", http.StatusInternalServerError)
+		return
+	}
 
 	session, err := Store.Get(r, "session")
 	if err != nil {
-
+		http.Error(w, "Gagal ambil session", http.StatusInternalServerError)
+		return
 	}
+
 	session.Values["authenticated"] = true
 	session.Values["email"] = email
 
 	if err := session.Save(r, w); err != nil {
-
-	} else {
-		log.Println("✅ SESSION TERSIMPAN")
-	}
-
-	profile, err := repository.GetUserEmail(config.DB, email)
-	log.Println("PROFIL: DITEMUKAN")
-	log.Println("ERROR LOAD PROFIL:", err)
-
-	if err != nil || profile.NamaPT == "" {
-		log.Println("➡️ Redirect ke /setup")
-		http.Redirect(w, r, "/setup", http.StatusSeeOther)
+		http.Error(w, "Gagal simpan session", http.StatusInternalServerError)
 		return
 	}
 
-	log.Println("➡️ Redirect ke /index")
-	http.Redirect(w, r, "/index", http.StatusSeeOther)
-}
+	returnToRaw := session.Values["returnTo"]
+	var returnTo string
+	if str, ok := returnToRaw.(string); ok && str != "" {
+		returnTo = str
+	} else {
+		returnTo = "/index"
+	}
 
-// LOGOUT
+	log.Println("➡️ Redirect ke", returnTo)
+	http.Redirect(w, r, returnTo, http.StatusSeeOther)
+}
 
 func handleLogout(w http.ResponseWriter, r *http.Request) {
 	session, _ := Store.Get(r, "session")
