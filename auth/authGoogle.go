@@ -3,6 +3,7 @@ package auth
 import (
 	"encoding/json"
 	"invoice-go/config"
+	"invoice-go/repository"
 	"net/http"
 	"os"
 
@@ -111,9 +112,9 @@ func handleCallback(w http.ResponseWriter, r *http.Request) {
 
 	// ✅ Cek apakah user sudah pernah isi profil
 	// ✅ Cek apakah user sudah isi profil lengkap
-	var namaPT string
-	err = config.DB.QueryRow(`SELECT nama_pt FROM user_profile WHERE email = $1`, email).Scan(&namaPT)
-	if err != nil || namaPT == "" {
+
+	profile, err := repository.GetUserEmail(config.DB, email)
+	if err != nil || profile.NamaPT == "" {
 		http.Redirect(w, r, "/setup", http.StatusSeeOther)
 		return
 	}
