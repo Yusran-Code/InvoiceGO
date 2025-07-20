@@ -4,12 +4,14 @@
     <meta charset="UTF-8" />
     <title>Invoice Generator</title>
     <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href="/static/style.css" />
   </head>
   <body style="text-align: center">
-    <div>
-      <!-- LEFT: FORM -->
-      <div>
+ 
+      
+      <div class="container">
         <h1>Invoice Generator</h1>
 
         <form hx-post="/generate" hx-target="#invoice" hx-swap="innerHTML">
@@ -67,5 +69,6 @@
     <div style="text-align: center">
       <a href="/">Home</a>
     </div>
+  
   </body>
 </html>

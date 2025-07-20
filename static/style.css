@@ -69,7 +69,7 @@ textarea:focus {
 /* === BUTTON === */
 button,
 .btn {
-  background-color: #6366f1;
+  background-color: #f163ea;
   color: white;
   border: none;
   padding: 0.75rem 1rem;
@@ -122,4 +122,37 @@ a:hover {
   font-size: 0.95rem;
   font-weight: 500;
   color: #374151;
+}
+@media (max-width: 640px) {
+  body {
+    padding: 1rem;
+  }
+
+  .container {
+    border-radius: 0;
+    padding: 1rem;
+    margin: 0;
+    max-width: 100%;
+    min-height: 100vh;
+    box-shadow: none;
+  }
+
+  h1,
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 1rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  button,
+  .btn {
+    padding: 0.65rem;
+    font-size: 1rem;
+  }
 }
