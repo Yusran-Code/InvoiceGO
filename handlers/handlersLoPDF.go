@@ -15,6 +15,8 @@ func HandleGeneratePDF(w http.ResponseWriter, r *http.Request, isDownload bool) 
 	defer form.File.Close()
 
 	data, err := service.ParseExcelToDataRows(form.File)
+	bulan := r.FormValue("bulan")
+
 	if err != nil || len(data) == 0 {
 		http.Error(w, "Gagal parsing data Excel", http.StatusBadRequest)
 		return
@@ -27,7 +29,7 @@ func HandleGeneratePDF(w http.ResponseWriter, r *http.Request, isDownload bool) 
 		w.Header().Set("Content-Disposition", "inline; filename=laporan-operasional.pdf")
 	}
 
-	err = service.GeneratePDFLo(data, form.NamaPT, form.Bulan, w)
+	err = service.GeneratePDFLo(data, form.NamaPT, bulan, w)
 	if err != nil {
 		http.Error(w, "Gagal membuat PDF: "+err.Error(), http.StatusInternalServerError)
 	}
