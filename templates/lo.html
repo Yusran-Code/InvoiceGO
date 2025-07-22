@@ -15,11 +15,11 @@
         if (isDownload) {
           form.action = "/downloadLo";
           form.target = "_self"; // langsung download
-          tombol.innerText = "⬇️ Download PDF";
+          tombol.innerText = "⬇️ Download";
         } else {
           form.action = "/previewLo";
           form.target = "_blank"; // buka tab baru
-          tombol.innerText = "🔍 Preview PDF";
+          tombol.innerText = "🔍 Preview";
         }
       }
     </script>
@@ -61,22 +61,25 @@
         </div>
 
         <!-- Pilihan: Preview atau Download -->
-        <div>
+        <div class="form-group">
           <label>
-            <input type="checkbox" onchange="ubahAksi(this.checked)" />
+            <input
+              style="margin: 0"
+              type="checkbox"
+              onchange="ubahAksi(this.checked)"
+            />
             Mode Download
           </label>
         </div>
 
-        <!-- Tombol Submit -->
         <div>
-          <button id="submitBtn" type="submit">🔍 Preview PDF</button>
+          <button id="submitBtn" type="submit">🔍 Preview</button>
         </div>
       </form>
     </div>
-  </body>
 
-  <div style="text-align: center; padding: 40px">
-    <a href="/">Home</a>
-  </div>
+    <div class="text-center mt-4">
+      <a href="/">Home</a>
+    </div>
+  </body>
 </html>

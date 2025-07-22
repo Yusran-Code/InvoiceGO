@@ -4,21 +4,24 @@
     <meta charset="UTF-8" />
     <title>Edit Profil</title>
 
-    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
     <link rel="stylesheet" href="/static/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
   </head>
+
   <body>
-    <div class="container">
+    <div>
       <h1>Edit Profil</h1>
 
       <form method="POST" action="/setup">
         <div class="form-group">
-          <label style="color: black">Nama PT:</label>
+          <label>Nama PT:</label>
           <input name="nama_pt" value="{{.NamaPT}}" required />
         </div>
 
         <div class="form-group">
-          <label style="color: black">Nama Bank:</label>
+          <label>Nama Bank:</label>
           <input name="nama_bank" value="{{.NamaBank}}" required />
         </div>
 
@@ -45,13 +48,14 @@
           <label>Kota/Kab.:</label>
           <input name="kabupaten" value="{{.Kabupaten}}" required />
         </div>
-
-        <button type="submit" class="btn">Simpan</button>
+        <div>
+          <button type="submit">Simpan</button>
+        </div>
       </form>
+    </div>
 
-      <div class="text-center mt-4">
-        <a href="/">Home</a>
-      </div>
+    <div class="text-center mt-4">
+      <a href="/">Home</a>
     </div>
   </body>
 </html>

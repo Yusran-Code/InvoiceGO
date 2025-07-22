@@ -8,7 +8,7 @@
 /* === GLOBAL === */
 body {
   font-family: "Segoe UI", sans-serif;
-  background-color: #f9f9f9;
+  background-color: rgb(255, 226, 226);
   color: #333;
   line-height: 1.6;
   padding: 2rem;
@@ -16,7 +16,7 @@ body {
 
 /* === CONTAINER === */
 .container {
-  max-width: 720px;
+  max-width: 540px;
   margin: auto;
   border-radius: 12px;
   padding: 2rem;
@@ -30,7 +30,7 @@ h2 {
   color: #111827;
   margin-bottom: 1.5rem;
   text-align: center;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
 }
 
 /* === FORM === */
@@ -53,7 +53,7 @@ textarea {
   width: 100%;
   padding: 0.7rem 1rem;
   border: 1px solid #d1d5db;
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
   font-size: 1rem;
   transition: border 0.2s ease, box-shadow 0.2s ease;
 }
@@ -61,7 +61,7 @@ textarea {
 input:focus,
 select:focus,
 textarea:focus {
-  border-color: #6366f1;
+  border-color: #3134f3;
   outline: none;
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
 }
@@ -69,24 +69,25 @@ textarea:focus {
 /* === BUTTON === */
 button,
 .btn {
-  background-color: #f163ea;
+  background-color: #eb3017;
   color: white;
   border: none;
-  padding: 0.75rem 1rem;
+  padding: 0.6rem 2rem;
   font-size: 1rem;
   border-radius: 0.5rem;
   cursor: pointer;
-  width: 100%;
+  width: 40%;
   transition: background-color 0.2s ease;
 }
 
 button:hover,
 .btn:hover {
-  background-color: #4f46e5;
+  background-color: #af3434;
 }
 
 /* === LINK === */
 a {
+  text-align: center;
   color: #6366f1;
   text-decoration: none;
 }
@@ -133,26 +134,26 @@ a:hover {
     padding: 1rem;
     margin: 0;
     max-width: 100%;
-    min-height: 100vh;
+    min-height: 90vh;
     box-shadow: none;
   }
 
   h1,
   h2 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin-bottom: 1rem;
   }
 
   input,
   select,
   textarea {
-    font-size: 1rem;
+    font-size: 0.9rem;
     padding: 0.6rem 0.8rem;
   }
 
   button,
   .btn {
-    padding: 0.65rem;
-    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.6rem;
   }
 }
