@@ -15,7 +15,8 @@ func ServiceInvoice(r *http.Request) (model.InvoiceData, error) {
 
 	qty, _ := strconv.ParseFloat(r.FormValue("quantity_kg"), 64)
 	dpp, _ := strconv.ParseFloat(r.FormValue("dpp"), 64)
-	displayQty, pokok, ppn, total := utils.HitungTagihan(qty)
+
+	displayQty, pokok, ppn, dpp, total := utils.HitungTagihan(qty, dpp)
 
 	data := model.InvoiceData{
 		InvoiceNumber: r.FormValue("invoice_number"),

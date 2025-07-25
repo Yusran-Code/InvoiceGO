@@ -26,7 +26,7 @@
   </head>
   <body>
     <div class="container">
-      <h2>📄 Upload Laporan Operasional</h2>
+      <h2>Upload Laporan Operasional</h2>
 
       <!-- FORM -->
       <form
@@ -35,7 +35,7 @@
         action="/previewLo"
         target="_blank"
         enctype="multipart/form-data"
-        style="text-align: center; margin: 10px"
+        style="margin: 10px"
       >
         <!-- Bulan -->
         <div class="form-group">
@@ -61,15 +61,13 @@
         </div>
 
         <!-- Pilihan: Preview atau Download -->
-        <div class="form-group">
-          <label>
-            <input
-              style="margin: 0"
-              type="checkbox"
-              onchange="ubahAksi(this.checked)"
-            />
-            Mode Download
-          </label>
+        <div style="display: inline-flex; align-items: center">
+          <input
+            style="margin-right: 6px"
+            type="checkbox"
+            onchange="ubahAksi(this.checked)"
+          />
+          <label style="font-size: small">Mode Download</label>
         </div>
 
         <div>

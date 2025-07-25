@@ -16,14 +16,11 @@ func GenerateInvoicePDF(w http.ResponseWriter, r *http.Request, isDownload bool)
 	session, _ := auth.GetSession(r)
 	email := session.Values["email"].(string)
 
-	// 🔍 Ambil profil user dari DB
 	profile, err := repository.GetUserEmail(config.DB, email)
 	if err != nil {
 		return fmt.Errorf("profil belum diisi")
-
 	}
 
-	// 📝 Ambil input form
 	err = r.ParseForm()
 	if err != nil {
 		return fmt.Errorf("gagal parsing form: %v", err)
@@ -35,10 +32,9 @@ func GenerateInvoicePDF(w http.ResponseWriter, r *http.Request, isDownload bool)
 	qty, _ := strconv.ParseFloat(r.FormValue("quantity_kg"), 64)
 	dpp, _ := strconv.ParseFloat(r.FormValue("dpp"), 64)
 
-	// 💰 Hitung tagihan
-	displayQty, pokok, ppn, total := utils.HitungTagihan(qty)
+	// 💰 Hitung tagihan manual via utils
+	displayQty, pokok, ppn, _, total := utils.HitungTagihan(qty, dpp)
 
-	// 📦 Bungkus ke struct model.InvoiceData
 	data := model.InvoiceData{
 		InvoiceNumber: invoiceNumber,
 		InvoiceDate:   invoiceDate,
@@ -51,10 +47,8 @@ func GenerateInvoicePDF(w http.ResponseWriter, r *http.Request, isDownload bool)
 		Total:         total,
 	}
 
-	// 📄 Generate PDF
 	pdf := utils.GeneratePDFInvoice(*profile, data)
 
-	// 📤 Set header PDF
 	w.Header().Set("Content-Type", "application/pdf")
 	if isDownload {
 		w.Header().Set("Content-Disposition", "attachment; filename=invoice.pdf")
@@ -62,6 +56,5 @@ func GenerateInvoicePDF(w http.ResponseWriter, r *http.Request, isDownload bool)
 		w.Header().Set("Content-Disposition", "inline; filename=invoice.pdf")
 	}
 
-	// ✅ Kirim PDF ke browser
 	return pdf.Output(w)
 }

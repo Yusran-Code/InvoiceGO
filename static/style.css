@@ -7,8 +7,8 @@
 
 /* === GLOBAL === */
 body {
-  font-family: "Segoe UI", sans-serif;
-  background-color: rgb(255, 226, 226);
+  font-family: fantasy;
+  background-color: rgb(239, 244, 247);
   color: #333;
   line-height: 1.6;
   padding: 2rem;
@@ -16,7 +16,7 @@ body {
 
 /* === CONTAINER === */
 .container {
-  max-width: 540px;
+  max-width: 40%;
   margin: auto;
   border-radius: 12px;
   padding: 2rem;
@@ -27,7 +27,7 @@ body {
 /* === HEADINGS === */
 h1,
 h2 {
-  color: #111827;
+  color: #333030;
   margin-bottom: 1.5rem;
   text-align: center;
   font-size: 1.4rem;
@@ -44,18 +44,19 @@ h2 {
   font-weight: 600;
   font-size: 0.95rem;
   margin-bottom: 0.5rem;
-  color: #374151;
+  color: #0343aa;
 }
 
 input,
 select,
 textarea {
   width: 100%;
-  padding: 0.7rem 1rem;
+  padding: 0.5rem 1rem;
   border: 1px solid #d1d5db;
   border-radius: 0.3rem;
   font-size: 1rem;
   transition: border 0.2s ease, box-shadow 0.2s ease;
+  color: rgb(7, 0, 70);
 }
 
 input:focus,

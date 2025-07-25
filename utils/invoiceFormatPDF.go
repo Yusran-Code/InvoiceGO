@@ -40,25 +40,40 @@ func GeneratePDFInvoice(profile model.AppProfile, data model.InvoiceData) *gofpd
 
 	// Tabel
 	pdf.SetFont("Arial", "B", 11)
-	pdf.SetFillColor(240, 240, 240)
+	pdf.SetFillColor(220, 220, 220) // header abu terang
 	pdf.CellFormat(90, 8, "Deskripsi", "1", 0, "C", true, 0, "")
 	pdf.CellFormat(90, 8, "Nilai", "1", 1, "C", true, 0, "")
 
 	pdf.SetFont("Arial", "", 11)
-	pdf.CellFormat(90, 8, "Tagihan Transport Fee Periode "+data.Periode, "1", 0, "L", false, 0, "")
-	pdf.CellFormat(90, 8, "", "1", 1, "R", false, 0, "")
-	pdf.CellFormat(90, 8, "Quantity/Kg", "1", 0, "L", false, 0, "")
-	pdf.CellFormat(90, 8, humanize.Comma(int64(data.DisplayQty)), "1", 1, "R", false, 0, "")
-	pdf.CellFormat(90, 8, "DPP", "1", 0, "L", false, 0, "")
-	pdf.CellFormat(90, 8, humanize.Comma(int64(data.DPP)), "1", 1, "R", false, 0, "")
-	pdf.CellFormat(90, 8, "Pokok", "1", 0, "L", false, 0, "")
-	pdf.CellFormat(90, 8, humanize.Comma(int64(data.Pokok)), "1", 1, "R", false, 0, "")
-	pdf.CellFormat(90, 8, "PPN 12%", "1", 0, "L", false, 0, "")
-	pdf.CellFormat(90, 8, humanize.Comma(int64(data.PPN)), "1", 1, "R", false, 0, "")
+
+	// Baris dengan warna selang seling
+	rows := []struct {
+		Label string
+		Value string
+	}{
+		{"Tagihan Transport Fee Periode " + data.Periode, ""},
+		{"Quantity/Kg", humanize.Comma(int64(data.DisplayQty))},
+		{"Pokok", humanize.Comma(int64(data.Pokok))},
+		{"DPP", humanize.Comma(int64(data.DPP))},
+		{"PPN 12%", humanize.Comma(int64(data.PPN))},
+	}
+
+	fill := false
+	for _, row := range rows {
+		if fill {
+			pdf.SetFillColor(245, 245, 245) // baris selang: abu halus
+		} else {
+			pdf.SetFillColor(255, 255, 255) // putih
+		}
+		pdf.CellFormat(90, 8, row.Label, "1", 0, "L", true, 0, "")
+		pdf.CellFormat(90, 8, row.Value, "1", 1, "R", true, 0, "")
+		fill = !fill
+	}
 
 	pdf.SetFont("Arial", "B", 11)
-	pdf.CellFormat(90, 8, "Total", "1", 0, "L", false, 0, "")
-	pdf.CellFormat(90, 8, "Rp. "+humanize.Comma(int64(data.Total)), "1", 1, "R", false, 0, "")
+	pdf.SetFillColor(230, 230, 250)
+	pdf.CellFormat(90, 8, "Total", "1", 0, "L", true, 0, "")
+	pdf.CellFormat(90, 8, "Rp. "+humanize.Comma(int64(data.Total)), "1", 1, "R", true, 0, "")
 
 	pdf.Ln(8)
 	pdf.SetFont("Arial", "I", 10)

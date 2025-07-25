@@ -20,6 +20,7 @@
           pattern="^\d+(\.\d{1,2})?$"
           title="Hanya angka. Gunakan titik (.) untuk desimal, tanpa koma atau simbol"
         />
+        <input type="hidden" name="ppn" value="{{.PPN}}" />
         <input type="hidden" name="periode" value="{{.Periode}}" />
       </div>
 
@@ -28,11 +29,12 @@
           background-color: forestgreen;
           color: white;
           padding: 6px 12px;
+          width: 100%;
           border: none;
           border-radius: 4px;
         "
       >
-        Preview PDF
+        Preview
       </button>
     </form>
 
@@ -49,19 +51,21 @@
         <input type="hidden" name="invoice_date" value="{{.InvoiceDate}}" />
         <input type="hidden" name="quantity_kg" value="{{.QuantityKG}}" />
         <input type="hidden" name="dpp" value="{{.DPP}}" />
+        <input type="hidden" name="ppn" value="{{.PPN}}" />
         <input type="hidden" name="periode" value="{{.Periode}}" />
       </div>
 
       <button
         style="
           background-color: dodgerblue;
+          width: 100%;
           color: white;
           padding: 6px 12px;
           border: none;
           border-radius: 4px;
         "
       >
-        Download PDF
+        Download
       </button>
     </form>
   </div>
