@@ -2,7 +2,6 @@ package service
 
 import (
 	"fmt"
-
 	"invoice-go/auth"
 	"invoice-go/config"
 	"invoice-go/model"
@@ -30,10 +29,10 @@ func GenerateInvoicePDF(w http.ResponseWriter, r *http.Request, isDownload bool)
 	invoiceDate := r.FormValue("invoice_date")
 	periode := r.FormValue("periode")
 	qty, _ := strconv.ParseFloat(r.FormValue("quantity_kg"), 64)
-	dpp, _ := strconv.ParseFloat(r.FormValue("dpp"), 64)
+	dppInput, _ := strconv.ParseFloat(r.FormValue("dpp"), 64) // ✅ Ambil DPP manual
 
-	// 💰 Hitung tagihan manual via utils
-	displayQty, pokok, ppn, _, total := utils.HitungTagihan(qty, dpp)
+	// 💰 Hitung tagihan pakai DPP manual
+	displayQty, pokok, ppn, dpp, total := utils.HitungTagihan(qty, dppInput)
 
 	data := model.InvoiceData{
 		InvoiceNumber: invoiceNumber,
